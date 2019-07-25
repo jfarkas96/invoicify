@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public abstract class Contact{
+public class Contact{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -30,14 +30,38 @@ public abstract class Contact{
     private String email;
     private String type;
 
-    public Contact(Company client, User createdBy, 
-    String firstName, String lastName, String email, String type){
+    public Contact(String firstName, String lastName, String phoneNumber, String email, String type, Company client, User createdBy){
         this.client = client;
         this.createdBy = createdBy;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
         this.email = email;
         this.type = type;
+    }
+
+    public void setId(long id){
+        this.id = id;
+    }
+
+    public long getId(){
+        return this.id;
+    }
+
+    public Company getClient(){
+        return this.client;
+    }
+
+    public void setClient(Company client){
+        this.client = client;
+    }
+
+    public User getUser(){
+        return this.createdBy;
+    }
+
+    public void setUser(User user){
+        this.createdBy = user;
     }
 
     public String getFirstName(){
