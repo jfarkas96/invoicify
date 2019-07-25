@@ -51,9 +51,11 @@ public class ContactController {
 	}
 */
 	@PostMapping("{id}")
-	public Contact create(@RequestBody Contact contact, @PathVariable long id){
+	public Contact create(@RequestBody Contact contact, @PathVariable long id, Authentication auth){
+		User user = (User) auth.getPrincipal();
 		Company client = companyRepository.findOne(id);
-        contact.setClient(client);
+		contact.setClient(client);
+		contact.setUser(user);
 		return contactRepo.save(contact);
 	}
 
