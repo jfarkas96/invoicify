@@ -31,7 +31,7 @@ public class Contact{
     private String type;
 
     public Contact(){
-        
+
     }
 
     public Contact(String firstName, String lastName, String phoneNumber, String email, String type){
@@ -42,13 +42,13 @@ public class Contact{
         this.type = type;
     }
 
-    public void setId(long id){
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public long getId(){
-        return this.id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
     public Company getClient(){
         return this.client;
