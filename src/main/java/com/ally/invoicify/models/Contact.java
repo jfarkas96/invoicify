@@ -30,9 +30,11 @@ public class Contact{
     private String email;
     private String type;
 
-    public Contact(String firstName, String lastName, String phoneNumber, String email, String type, Company client, User createdBy){
-        this.client = client;
-        this.createdBy = createdBy;
+    public Contact(){
+        
+    }
+
+    public Contact(String firstName, String lastName, String phoneNumber, String email, String type){
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;

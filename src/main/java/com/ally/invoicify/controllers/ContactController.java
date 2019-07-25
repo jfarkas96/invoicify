@@ -24,7 +24,8 @@ import com.ally.invoicify.repositories.CompanyRepository;
 @RequestMapping("/api/contact")
 public class ContactController {
 	
-    private CompanyRepository companyRepository;
+	@Autowired
+    CompanyRepository companyRepository;
 
 	@Autowired
 	ContactRepository contactRepo;
@@ -38,15 +39,26 @@ public class ContactController {
 	public Contact getOne(@PathVariable long id){
 		return contactRepo.findOne(id);
 	}
-	
-	@PostMapping("{id}")
-	public Contact create(@RequestBody Contact contact, @PathVariable long id, Authentication auth){
-        User user = (User) auth.getPrincipal();
-		Company client = companyRepository.findOne(id);
+	/*
+	@PostMapping
+	public Contact create(@RequestBody Contact contact, Authentication auth){
+		User user = (User) auth.getPrincipal();
+		long idtest=2;
+		Company client = companyRepository.findOne(idtest);
         contact.setClient(client);
         contact.setUser(user);
 		return contactRepo.save(contact);
 	}
+*/
+	@PostMapping("{id}")
+	public Contact create(@RequestBody Contact contact){
+		Long id = 2L;
+		Company client = companyRepository.findOne(id);
+        contact.setClient(client);
+		return contactRepo.save(contact);
+	}
+
+
 	
 	@PutMapping("{id}")
 	public Contact update(@RequestBody Contact contact, @PathVariable long id){
