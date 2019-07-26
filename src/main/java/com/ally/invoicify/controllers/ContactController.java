@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 import com.ally.invoicify.models.Contact;
 import com.ally.invoicify.models.Company;
@@ -21,6 +23,7 @@ import com.ally.invoicify.repositories.ContactRepository;
 import com.ally.invoicify.repositories.CompanyRepository;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/contact")
 public class ContactController {
 	
