@@ -63,8 +63,10 @@ public class ContactController {
 
 	
 	@PutMapping("{id}")
-	public Contact update(@RequestBody Contact contact, @PathVariable long id){
+	public Contact update(@RequestBody Contact contact, @PathVariable long id, Authentication auth){
 		contact.setId(id);
+		User user = (User) auth.getPrincipal();
+		contact.setUser(user);
 		return contactRepo.save(contact);
 	}
 	

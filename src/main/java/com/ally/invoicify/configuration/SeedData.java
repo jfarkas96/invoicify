@@ -24,7 +24,7 @@ public class SeedData {
 		Company ajax = companyRepository.save(new Company("AJAX Ltd."));
 		Company lomax = companyRepository.save(new Company("Lomax Brothers, LLC"));
 
-		contactRepository.save(new Contact("first", "last", "555-555-5555", "first@email.com", "primary", ajax, admin));
+		contactRepository.save(new Contact("First", "Last", "555-555-5555", "first@email.com", "Primary", ajax, admin));
 
 		recordRepository.save(new FlatFeeBillingRecord(300, "Faxes", ajax, admin));
 		recordRepository.save(new FlatFeeBillingRecord(1.75, "Socks", ajax, admin));
