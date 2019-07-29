@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -34,12 +35,14 @@ public class Contact{
 
     }
 
-    public Contact(String firstName, String lastName, String phoneNumber, String email, String type){
+    public Contact(String firstName, String lastName, String phoneNumber, String email, String type, Company client, User createdBy){
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.type = type;
+        this.client = client;
+        this.createdBy = createdBy;
     }
 
 	public Long getId() {

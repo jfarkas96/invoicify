@@ -8,19 +8,23 @@ import com.ally.invoicify.models.Company;
 import com.ally.invoicify.models.FlatFeeBillingRecord;
 import com.ally.invoicify.models.RateBasedBillingRecord;
 import com.ally.invoicify.models.User;
+import com.ally.invoicify.models.Contact;
 import com.ally.invoicify.repositories.BillingRecordRepository;
 import com.ally.invoicify.repositories.CompanyRepository;
 import com.ally.invoicify.repositories.UserRepository;
+import com.ally.invoicify.repositories.ContactRepository;
 
 @Configuration
 public class SeedData {
 
 	public SeedData(BillingRecordRepository recordRepository, CompanyRepository companyRepository,
-			UserRepository userRepository, PasswordEncoder encoder) {
+			UserRepository userRepository, PasswordEncoder encoder, ContactRepository contactRepository) {
 		User admin = userRepository.save(new User("admin", encoder.encode("admin")));
 
 		Company ajax = companyRepository.save(new Company("AJAX Ltd."));
 		Company lomax = companyRepository.save(new Company("Lomax Brothers, LLC"));
+
+		contactRepository.save(new Contact("first", "last", "555-555-5555", "first@email.com", "primary", ajax, admin));
 
 		recordRepository.save(new FlatFeeBillingRecord(300, "Faxes", ajax, admin));
 		recordRepository.save(new FlatFeeBillingRecord(1.75, "Socks", ajax, admin));
@@ -33,6 +37,8 @@ public class SeedData {
 		recordRepository.save(new RateBasedBillingRecord(100, 4.25, "House cleaning", ajax, admin));
 		recordRepository.save(new RateBasedBillingRecord(700, 8, "Palm reading", lomax, admin));
 		recordRepository.save(new RateBasedBillingRecord(1.57, 25, "Show shining", lomax, admin));
+
+
 	}
 
 }
