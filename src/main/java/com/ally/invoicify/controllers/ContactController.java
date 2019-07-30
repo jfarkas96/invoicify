@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 import com.ally.invoicify.models.Contact;
 import com.ally.invoicify.models.Company;
@@ -21,6 +23,7 @@ import com.ally.invoicify.repositories.ContactRepository;
 import com.ally.invoicify.repositories.CompanyRepository;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/contact")
 public class ContactController {
 	
@@ -50,11 +53,9 @@ public class ContactController {
 		return contactRepo.save(contact);
 	}
 */
-	@PostMapping("{id}")
-	public Contact create(@RequestBody Contact contact, @PathVariable long id, Authentication auth){
+	@PostMapping
+	public Contact create(@RequestBody Contact contact, Authentication auth){
 		User user = (User) auth.getPrincipal();
-		Company client = companyRepository.findOne(id);
-		contact.setClient(client);
 		contact.setUser(user);
 		return contactRepo.save(contact);
 	}
@@ -62,8 +63,10 @@ public class ContactController {
 
 	
 	@PutMapping("{id}")
-	public Contact update(@RequestBody Contact contact, @PathVariable long id){
+	public Contact update(@RequestBody Contact contact, @PathVariable long id, Authentication auth){
 		contact.setId(id);
+		User user = (User) auth.getPrincipal();
+		contact.setUser(user);
 		return contactRepo.save(contact);
 	}
 	
